@@ -64,8 +64,7 @@ export const Container = styled.div`
 
     @media screen and (max-width: 1024px) {
       .book-overlay {
-        
-        background-color: #0000006c;
+        background-color: #0000009d;
         opacity: 1;
       }
     }

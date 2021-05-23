@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-size: 16px;
     font-weight: 300;
+    color: white;
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
     background-color: ${({ theme }) => theme.colors.primary};
