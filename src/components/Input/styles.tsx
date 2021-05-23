@@ -16,6 +16,7 @@ export const Container = styled.div`
       background: none;
       border: none;
       padding: 0 1rem;
+      color: white;
     }
 
     .icon {

@@ -1,14 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import { Container } from './styles'
+import { SidebarProps } from './interface'
 import Input from 'components/Input'
 import { FaSearch } from 'react-icons/fa'
+import {
+  AiFillLeftCircle,
+  AiFillRightCircle,
+  AiOutlineClose
+} from 'react-icons/ai'
 
-const Sidebar = () => {
+const Sidebar = ({ books }: SidebarProps) => {
+  const router = useRouter()
+  const [isActive, setIsActive] = useState(true)
+  const [search, setSearch] = useState('')
+
   return (
-    <Container>
+    <Container isActive={isActive}>
       <div className="header">
-        <Input placeholder="Pesquisar..." icon={<FaSearch />} />
+        <h1> Pesquisar </h1>
+        <div className="toggle-button" onClick={() => setIsActive(!isActive)}>
+          {isActive ? (
+            <AiFillLeftCircle size={28} />
+          ) : (
+            <AiFillRightCircle size={28} />
+          )}
+        </div>
       </div>
+      <div className="search">
+        <Input
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          iconClick={() => setSearch('')}
+          placeholder="ítulos, palavras chaves e autores"
+          icon={
+            search.length ? (
+              <AiOutlineClose size={18} />
+            ) : (
+              <FaSearch size={18} />
+            )
+          }
+        />
+      </div>
+      <ul className="search-list">
+        {books.map((book, index) => (
+          <li key={index} onClick={() => router.push(`/${book.isbn}`)}>
+            {book.title}
+          </li>
+        ))}
+      </ul>
     </Container>
   )
 }
