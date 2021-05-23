@@ -15,8 +15,8 @@ export default {
     }
   },
   colors: {
-    primary: '#0070b8',
-    secondary: '#09c199'
+    primary: '#14213D',
+    secondary: '#FCA311'
   },
   layers: {
     base: 10,

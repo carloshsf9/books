@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
   
   input,
