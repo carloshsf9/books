@@ -1,0 +1,9 @@
+{
+  "name": "Ypêdia",
+  "short_name": "Ypêdia",
+  "background_color": "#06092B",
+  "description": "Aqui você encontra dicas sobre o uso de produtos e organização da sua casa.",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#0070b8"
+}
