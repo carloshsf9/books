@@ -10,5 +10,13 @@ export const Container = styled.section`
       flex-wrap: wrap;
       padding: 3rem 2rem;
     }
+
+    @media screen and (max-width: 1024px) {
+      .books-container {
+        padding: 3rem 1rem;
+        justify-content: center;
+      }
+      flex-direction: column;
+    }
   `}
 `

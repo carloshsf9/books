@@ -71,6 +71,9 @@ export const Container = styled.div`
         align-items: center;
         text-align: center;
       }
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   `}
 `

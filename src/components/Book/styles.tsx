@@ -61,5 +61,13 @@ export const Container = styled.div`
         cursor: pointer;
       }
     }
+
+    @media screen and (max-width: 1024px) {
+      .book-overlay {
+        
+        background-color: #0000006c;
+        opacity: 1;
+      }
+    }
   `}
 `
