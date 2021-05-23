@@ -3,7 +3,11 @@ import books from 'constants/books.json'
 import { useRouter } from 'next/router'
 import { Container } from './styles'
 
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineLeftCircle
+} from 'react-icons/ai'
 
 const Details = () => {
   const router = useRouter()
@@ -15,6 +19,9 @@ const Details = () => {
 
   return (
     <Container>
+      <div className="goBack-button" onClick={() => router.back()}>
+        <AiOutlineLeftCircle size={32} />
+      </div>
       <div className="content">
         <div className="header">
           <img className="cover" src={book.thumbnailUrl} />

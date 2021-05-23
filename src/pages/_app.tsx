@@ -6,7 +6,7 @@ function App({ Component, pageProps, router }: AppProps) {
   return (
     <ThemeWrapper>
       <Head>
-        <title>Ypêdia</title>
+        <title>Books</title>
         <link
           rel="shortcut icon"
           type="image/svg+xml"

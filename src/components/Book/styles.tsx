@@ -16,13 +16,16 @@ export const Container = styled.div`
     .book-header {
       height: 68px;
       margin-bottom: 0.5rem;
+      white-space: wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .book-content {
-      white-space: nowrap;
+      white-space: wrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      height: 120px;
+      height: 132px;
     }
 
     .book-picture {
@@ -37,7 +40,7 @@ export const Container = styled.div`
       position: absolute;
       height: 100%;
       width: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      background: ${theme.colors.secondary};
       z-index: 5;
       border-radius: 0.5rem;
       color: white;
@@ -56,6 +59,14 @@ export const Container = styled.div`
         opacity: 1;
         transition: 140ms ease;
         cursor: pointer;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      .book-overlay {
+        
+        background-color: #0000006c;
+        opacity: 1;
       }
     }
   `}

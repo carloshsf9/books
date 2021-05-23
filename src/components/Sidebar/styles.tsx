@@ -74,5 +74,9 @@ export const Container = styled.div<ContainerProps>`
     .search-list {
       display: ${isActive ? 'block' : 'none'};
     }
+
+    @media screen and (max-width: 1024px) {
+      display: none;'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                '
+    }
   `}
 `
