@@ -79,7 +79,7 @@ const Sidebar = ({ page, setPage, search, setSearch }: SidebarProps) => {
           value={search}
           onChange={e => handleBooksSearch(e.target.value)}
           iconClick={() => clearSearch()}
-          placeholder="Títulos, palavras chaves e autores"
+          placeholder="Títulos, palavras-chave e autores"
           icon={
             search?.length ? (
               <AiOutlineClose size={18} />

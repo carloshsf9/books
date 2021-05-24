@@ -31,7 +31,7 @@ const HomePage = () => {
       />
       {books?.length === 0 && !showFavorites && page === 0 && (
         <div className="not-found">
-          <h1>Pesquise por titulos palavras chaves e autores..</h1>
+          <h1>Pesquise por titulos palavras-chave e autores..</h1>
         </div>
       )}
       {favorites?.length === 0 && showFavorites && (

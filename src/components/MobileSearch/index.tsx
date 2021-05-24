@@ -41,7 +41,7 @@ const MobileSearch = ({ page, search, setSearch }: MobileSearchProps) => {
         <div className="input">
           <Input
             value={search}
-            placeholder="Pesquise por títulos, palavras chaves e autores"
+            placeholder="Pesquise por títulos, palavras-chave e autores"
             onChange={e => handleBooksSearch(e.target.value)}
           />
         </div>
