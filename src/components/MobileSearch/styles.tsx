@@ -30,6 +30,15 @@ export const Container = styled.div`
       line-height: 2rem;
     }
 
+    .result {
+      max-height: 72px;
+      white-space: pre-wrap;
+      overflow: hidden;
+      list-style: none;
+      border-bottom: 1px solid #ffffff1d;
+      margin-bottom: 0.5rem;
+    }
+
     @media screen and (max-width: 1024px) {
       display: flex;
     }

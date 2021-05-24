@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Container, FilterButton } from './styles'
 import { useGlobalContext } from 'contexts/globalContext'
-import { SidebarProps } from './interface'
 import Input from 'components/Input'
 import { FaSearch } from 'react-icons/fa'
 import {
@@ -11,11 +10,37 @@ import {
   AiOutlineClose
 } from 'react-icons/ai'
 
-const Sidebar = ({ books }: SidebarProps) => {
+import { getBooksByKeywords } from 'utils/getBooksByKeywords'
+import { formatBookResponse } from 'utils/formatBookResponse'
+
+const Sidebar = () => {
   const router = useRouter()
-  const { showFavorites, setShowFavorites } = useGlobalContext()
+  const {
+    showFavorites,
+    setShowFavorites,
+    setBooks,
+    books
+  } = useGlobalContext()
   const [isActive, setIsActive] = useState(true)
   const [search, setSearch] = useState('')
+
+  const handleBooksSearch = async (keywords: string) => {
+    setSearch(keywords)
+    setBooks && setBooks([])
+    if (keywords.length > 0) {
+      const response = await getBooksByKeywords(keywords)
+      const formatedBooks = response.map((book: any) => {
+        return formatBookResponse(book)
+      })
+
+      setBooks && setBooks(formatedBooks)
+    }
+  }
+
+  const clearSearch = () => {
+    setSearch('')
+    setBooks && setBooks([])
+  }
 
   return (
     <Container isActive={isActive}>
@@ -42,9 +67,9 @@ const Sidebar = ({ books }: SidebarProps) => {
       <div className="search">
         <Input
           value={search}
-          onChange={e => setSearch(e.target.value)}
-          iconClick={() => setSearch('')}
-          placeholder="ítulos, palavras chaves e autores"
+          onChange={e => handleBooksSearch(e.target.value)}
+          iconClick={() => clearSearch()}
+          placeholder="Títulos, palavras chaves e autores"
           icon={
             search.length ? (
               <AiOutlineClose size={18} />
@@ -55,8 +80,8 @@ const Sidebar = ({ books }: SidebarProps) => {
         />
       </div>
       <ul className="search-list">
-        {books.map((book, index) => (
-          <li key={index} onClick={() => router.push(`/${book.isbn}`)}>
+        {books?.map((book, index) => (
+          <li key={index} onClick={() => router.push(`/${book.id}`)}>
             {book.title}
           </li>
         ))}

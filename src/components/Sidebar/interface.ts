@@ -1,9 +1,10 @@
-interface Book {
+type Book = {
   title: string
-  isbn: string
-  longDescription?: string
+  description: string
+  picture?: string
   publishedDate: string
-  thumbnailUrl: string
+  id: string
+  authors: string[]
 }
 
 export type SidebarProps = {

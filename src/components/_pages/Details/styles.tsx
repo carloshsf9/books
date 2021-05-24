@@ -26,6 +26,7 @@ export const Container = styled.div`
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      max-width: 560px;
     }
 
     .favorite {
@@ -44,6 +45,7 @@ export const Container = styled.div`
       display: flex;
       gap: 1.5rem;
       justify-content: center;
+      max-width: ${theme.grid.container};
     }
 
     .book-description {
@@ -60,9 +62,19 @@ export const Container = styled.div`
     }
 
     .cover {
+      min-width: 290px;
+      min-height: 320px;
       width: 290px;
       height: 320px;
       object-fit: cover;
+    }
+
+    .authors {
+      margin-top: 1rem;
+    }
+
+    .authors {
+      display: flex;
     }
 
     @media screen and (max-width: 1024px) {
@@ -73,6 +85,9 @@ export const Container = styled.div`
       }
       h1 {
         font-size: 1.5rem;
+      }
+      .title-container {
+        flex-direction: column-reverse;
       }
     }
   `}
