@@ -16,8 +16,9 @@ const Book = ({ data, onClick }: BookProps) => {
           <span> {data.publishedDate} </span>
         </div>
       </div>
-      <img className="book-picture" src={data.picture} />
-      {!data.picture && (
+      {data.picture ? (
+        <img className="book-picture" src={data.picture} />
+      ) : (
         <div className="cover-replace">
           <span>Capa indisponível</span>
         </div>

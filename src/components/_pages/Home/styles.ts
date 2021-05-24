@@ -23,7 +23,7 @@ export const Container = styled.section`
 
       & > h1 {
         margin-bottom: 2rem;
-        max-width: 500px;
+        max-width: 600px;
         text-align: center;
         font-size: 2rem;
       }
@@ -35,7 +35,7 @@ export const Container = styled.section`
       width: 100%;
       background-color: ${theme.colors.primary};
       z-index: 10;
-      padding: 1.5rem 0;
+      padding: 1.25rem 0;
     }
 
     .pagination {
