@@ -5,36 +5,42 @@ import { useGlobalContext } from 'contexts/globalContext'
 
 import Sidebar from 'components/Sidebar'
 import MobileSearch from 'components/MobileSearch'
-import books from 'constants/books.json'
 import Book from 'components/Book'
 
 const HomePage = () => {
   const router = useRouter()
-  const { showFavorites, favorites } = useGlobalContext()
-  console.log(favorites);
-  
+  const { showFavorites, favorites, books } = useGlobalContext()
+
   return (
     <Container>
       <MobileSearch />
-      <Sidebar books={books} />
+      <Sidebar />
+      {books?.length === 0 && !showFavorites && (
+        <div className="not-found">
+          <h1>Pesquise por titulos palavras chaves e autores..</h1>
+        </div>
+      )}
+      {favorites?.length === 0 && showFavorites && (
+        <div className="not-found">
+          <h1>Você ainda não tem livros salvos como favoritos</h1>
+        </div>
+      )}
       <div className="books-container">
-        {books
-          .filter(book => {
-            if (showFavorites) {
-              if (favorites?.includes(book.isbn)) {
-                return book
-              }
-              return null
-            }
-            return book
-          })
-          .map((book, index) => (
-            <Book
-              key={index}
-              data={book}
-              onClick={() => router.push(`/${book.isbn}`)}
-            />
-          ))}
+        {showFavorites
+          ? favorites?.map((book: any, index: number) => (
+              <Book
+                key={index}
+                data={book}
+                onClick={() => router.push(`/${book.id}`)}
+              />
+            ))
+          : books?.map((book: any, index: number) => (
+              <Book
+                key={index}
+                data={book}
+                onClick={() => router.push(`/${book.id}`)}
+              />
+            ))}
       </div>
     </Container>
   )

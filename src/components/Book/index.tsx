@@ -10,13 +10,13 @@ const Book = ({ data, onClick }: BookProps) => {
           <h2> {data.title} </h2>
         </div>
         <div className="book-content">
-          <p> {data.longDescription} </p>
+          <p> {data.description} </p>
         </div>
         <div className="book-bottom">
           <span> {data.publishedDate} </span>
         </div>
       </div>
-      <img className="book-picture" src={data.thumbnailUrl} />
+      <img className="book-picture" src={data.picture} />
     </Container>
   )
 }

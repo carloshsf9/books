@@ -10,22 +10,36 @@ type Props = {
   children: React.ReactNode
 }
 
+type Book = {
+  title: string
+  description: string
+  picture?: string
+  publishedDate: string
+  id: string
+  authors: string[]
+}
+
 type ContextType = {
-  favorites?: string[]
-  setFavorites?: Dispatch<SetStateAction<string[]>>
+  favorites?: Book[]
+  setFavorites?: Dispatch<SetStateAction<Book[]>>
   showFavorites?: boolean
   setShowFavorites?: Dispatch<SetStateAction<boolean>>
+  books?: Book[]
+  setBooks?: Dispatch<SetStateAction<Book[]>>
 }
 
 const GlobalContext = createContext<ContextType>({
   favorites: [],
   setFavorites: undefined,
   showFavorites: false,
-  setShowFavorites: undefined
+  setShowFavorites: undefined,
+  books: [],
+  setBooks: undefined
 })
 
 const GlobalProvider = ({ children }: Props) => {
-  const [favorites, setFavorites] = useState<string[]>([])
+  const [favorites, setFavorites] = useState<Book[]>([])
+  const [books, setBooks] = useState<Book[]>([])
   const [showFavorites, setShowFavorites] = useState<boolean>(false)
 
   return (
@@ -34,7 +48,9 @@ const GlobalProvider = ({ children }: Props) => {
         favorites,
         setFavorites,
         showFavorites,
-        setShowFavorites
+        setShowFavorites,
+        books,
+        setBooks
       }}
     >
       {children}

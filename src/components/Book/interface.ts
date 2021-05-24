@@ -1,8 +1,10 @@
-interface Book {
+type Book = {
   title: string
-  longDescription?: string
+  description: string
+  picture?: string
   publishedDate: string
-  thumbnailUrl: string
+  id: string
+  authors: string[]
 }
 
 export type BookProps = {

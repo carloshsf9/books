@@ -1,27 +1,48 @@
 import React, { useState } from 'react'
 import { Container } from './styles'
 import Input from 'components/Input'
+import { useGlobalContext } from 'contexts/globalContext'
 
-import books from 'constants/books.json'
+import { getBooksByKeywords } from 'utils/getBooksByKeywords'
+import { formatBookResponse } from 'utils/formatBookResponse'
+
 import { useRouter } from 'next/router'
 
 const MobileSearch = () => {
-  const [search, setSearch] = useState<string>('')
   const router = useRouter()
+  const { books, setBooks } = useGlobalContext()
+  const [search, setSearch] = useState<string>('')
+
+  const handleBooksSearch = async (keywords: string) => {
+    setSearch(keywords)
+    setBooks && setBooks([])
+    if (keywords.length > 0) {
+      const response = await getBooksByKeywords(keywords)
+      const formatedBooks = response.map((book: any) => {
+        return formatBookResponse(book)
+      })
+
+      setBooks && setBooks(formatedBooks)
+    }
+  }
   return (
     <Container>
       <div className="input-container">
         <Input
           value={search}
           placeholder="Pesquise por títulos, palavras chaves e autores"
-          onChange={e => setSearch(e.target.value)}
+          onChange={e => handleBooksSearch(e.target.value)}
         />
       </div>
       <div className="results-container">
         <ul>
           {search.length > 0 &&
-            books.slice(0, 5).map((book, index) => (
-              <li onClick={() => router.push(`/${book.isbn}`)} key={index}>
+            books?.slice(0, 4).map((book, index) => (
+              <li
+                className="result"
+                onClick={() => router.push(`/${book.id}`)}
+                key={index}
+              >
                 {book.title}
               </li>
             ))}
