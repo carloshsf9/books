@@ -30,7 +30,7 @@ const Details = () => {
       setFavorites(favorites.filter(bookId => id !== bookId))
       return
     }
-    if (favorites && id && setFavorites) {
+    if (favorites && id && setFavorites && bookId) {
       setIsfavorite(true)
       const concatArray = favorites.concat([bookId])
       setFavorites(concatArray)

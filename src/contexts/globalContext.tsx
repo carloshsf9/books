@@ -11,23 +11,30 @@ type Props = {
 }
 
 type ContextType = {
-  favorites?: [string | undefined][]
-  setFavorites?: Dispatch<SetStateAction<[string | undefined][]>>
+  favorites?: string[]
+  setFavorites?: Dispatch<SetStateAction<string[]>>
+  showFavorites?: boolean
+  setShowFavorites?: Dispatch<SetStateAction<boolean>>
 }
 
 const GlobalContext = createContext<ContextType>({
   favorites: [],
-  setFavorites: undefined
+  setFavorites: undefined,
+  showFavorites: false,
+  setShowFavorites: undefined
 })
 
 const GlobalProvider = ({ children }: Props) => {
-  const [favorites, setFavorites] = useState<[string | undefined][]>([])
+  const [favorites, setFavorites] = useState<string[]>([])
+  const [showFavorites, setShowFavorites] = useState<boolean>(false)
 
   return (
     <GlobalContext.Provider
       value={{
         favorites,
-        setFavorites
+        setFavorites,
+        showFavorites,
+        setShowFavorites
       }}
     >
       {children}

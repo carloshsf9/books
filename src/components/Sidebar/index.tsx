@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Container } from './styles'
+import { Container, FilterButton } from './styles'
+import { useGlobalContext } from 'contexts/globalContext'
 import { SidebarProps } from './interface'
 import Input from 'components/Input'
 import { FaSearch } from 'react-icons/fa'
@@ -12,6 +13,7 @@ import {
 
 const Sidebar = ({ books }: SidebarProps) => {
   const router = useRouter()
+  const { showFavorites, setShowFavorites } = useGlobalContext()
   const [isActive, setIsActive] = useState(true)
   const [search, setSearch] = useState('')
 
@@ -26,6 +28,16 @@ const Sidebar = ({ books }: SidebarProps) => {
             <AiFillRightCircle size={28} />
           )}
         </div>
+      </div>
+      <div className="filter">
+        <span>Filtros:</span>
+        <FilterButton
+          isActive={showFavorites}
+          onClick={() => setShowFavorites && setShowFavorites(!showFavorites)}
+        >
+          Favoritos
+          {showFavorites && <AiOutlineClose />}
+        </FilterButton>
       </div>
       <div className="search">
         <Input
