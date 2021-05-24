@@ -56,7 +56,7 @@ const HomePage = () => {
               />
             ))}
         {!showFavorites && books !== undefined && books?.length > 0 && (
-          <>
+          <div className="pagination-container">
             <div className="pagination">
               {page > 0 && (
                 <>
@@ -79,7 +79,7 @@ const HomePage = () => {
             <div className="page">
               <span>Página atual: {page + 1}</span>
             </div>
-          </>
+          </div>
         )}
       </div>
     </Container>

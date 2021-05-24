@@ -29,17 +29,26 @@ export const Container = styled.section`
       }
     }
 
+    .pagination-container {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      background-color: ${theme.colors.primary};
+      z-index: 10;
+      padding: 1.5rem 0;
+    }
+
     .pagination {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 1rem;
       gap: 1rem;
     }
 
     .page {
       width: 100%;
       display: flex;
+      margin-top: 0.5rem;
       justify-content: center;
     }
 
