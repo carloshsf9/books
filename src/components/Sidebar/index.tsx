@@ -14,7 +14,7 @@ import {
 import { getBooksByKeywords } from 'utils/getBooksByKeywords'
 import { formatBookResponse } from 'utils/formatBookResponse'
 
-const Sidebar = ({ page, setPage }: SidebarProps) => {
+const Sidebar = ({ page, setPage, search, setSearch }: SidebarProps) => {
   const router = useRouter()
   const {
     showFavorites,
@@ -23,7 +23,6 @@ const Sidebar = ({ page, setPage }: SidebarProps) => {
     books
   } = useGlobalContext()
   const [isActive, setIsActive] = useState(true)
-  const [search, setSearch] = useState('')
   const [resultsLength, setResultsLength] = useState()
 
   useEffect(() => {
@@ -32,7 +31,6 @@ const Sidebar = ({ page, setPage }: SidebarProps) => {
 
   const handleBooksSearch = async (keywords: string) => {
     setSearch(keywords)
-    if (search.length === 0 && setPage) setPage(0)
     setResultsLength(undefined)
     setBooks && setBooks([])
     if (keywords?.length > 0) {
@@ -94,13 +92,13 @@ const Sidebar = ({ page, setPage }: SidebarProps) => {
       <div className="results-length">
         {resultsLength && (
           <p>
-            {(page + 1) * 10} de {resultsLength} resultados encontrados estão
+            {(page + 1) * 20} de {resultsLength} resultados encontrados estão
             sendo exibidos
           </p>
         )}
       </div>
       <ul className="search-list">
-        {books?.map((book, index) => (
+        {books?.slice(0, 9).map((book, index) => (
           <li key={index} onClick={() => router.push(`/${book.id}`)}>
             {book.title}
           </li>

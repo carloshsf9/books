@@ -6,7 +6,6 @@ export const Container = styled.div`
     background-color: #1a1a1a;
     width: 100%;
     min-height: 80px;
-    position: sticky;
     top: 0;
     z-index: 10;
     justify-content: center;
@@ -15,11 +14,20 @@ export const Container = styled.div`
     transition: height 180ms ease;
 
     flex-direction: column;
-
+    .input {
+      width: 100%;
+    }
+    .filter-button {
+      cursor: pointer;
+    }
     .input-container {
       width: 100%;
       margin-top: 1rem;
       max-width: 580px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
     }
 
     .results-container {

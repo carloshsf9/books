@@ -78,7 +78,8 @@ export const Container = styled.div<ContainerProps>`
     }
 
     .search,
-    .search-list {
+    .search-list, 
+    .results-length {
       display: ${isActive ? 'block' : 'none'};
     }
 
