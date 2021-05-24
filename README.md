@@ -28,8 +28,8 @@
 > Global State
 
   
-For the management of global states, the library is used
-  native to react Context Api.
+For the management of global states, the library used
+  is the React Context Api.
   Link: https://pt-br.reactjs.org/docs/context.html
 
 
