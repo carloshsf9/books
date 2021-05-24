@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Container } from './styles'
 import { useGlobalContext } from 'contexts/globalContext'
@@ -10,12 +10,24 @@ import Book from 'components/Book'
 const HomePage = () => {
   const router = useRouter()
   const { showFavorites, favorites, books } = useGlobalContext()
+  const [search, setSearch] = useState<string>('')
   const [page, setPage] = useState<number>(0)
+
+  useEffect(() => {
+    if (search.length === 0) {
+      setPage(0)
+    }
+  }, [search])
 
   return (
     <Container>
-      <MobileSearch page={page} />
-      <Sidebar page={page} setPage={setPage} />
+      <MobileSearch search={search} setSearch={setSearch} page={page} />
+      <Sidebar
+        search={search}
+        setSearch={setSearch}
+        page={page}
+        setPage={setPage}
+      />
       {books?.length === 0 && !showFavorites && page === 0 && (
         <div className="not-found">
           <h1>Pesquise por titulos palavras chaves e autores..</h1>
