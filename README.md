@@ -47,12 +47,6 @@ npm run dev
 ```
 
 
-> Ambiente de produção
-
-```
-npm run start
-```
-
 
 > Teste de build em ambiente de desenvolvimento
 
