@@ -5,7 +5,7 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  ${({ isActive }) => css`
+  ${({ theme, isActive }) => css`
     background-color: #1a1a1a;
     height: 100vh;
     width: ${isActive ? '100%' : '100px'};
@@ -13,6 +13,7 @@ export const Container = styled.div<ContainerProps>`
     padding: 3rem 1.5rem;
     position: sticky;
     top: 0;
+    bottom: 0;
     color: white;
     transition: 180ms ease;
     box-shadow: 5px 0px 30px 10px rgba(0, 0, 0, 0.35);
@@ -43,7 +44,6 @@ export const Container = styled.div<ContainerProps>`
       padding: 1rem 1.5rem;
       line-height: 2rem;
       overflow-y: auto;
-      height: 100%;
       margin-top: 1rem;
       padding-bottom: 5rem;
 
@@ -70,13 +70,47 @@ export const Container = styled.div<ContainerProps>`
       background-color: #2b2b2b;
     }
 
+    .filter {
+      display: ${isActive ? 'flex' : 'none'};
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
     .search,
     .search-list {
       display: ${isActive ? 'block' : 'none'};
     }
 
+
     @media screen and (max-width: 1024px) {
-      display: none;'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                '
+      display: none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         '
+    }
+  `}
+`
+
+interface FilterButton {
+  isActive?: boolean
+}
+
+export const FilterButton = styled.button<FilterButton>`
+  ${({ theme, isActive }) => css`
+    border: 1px solid ${isActive ? theme.colors.secondary : 'white'};
+    border-radius: 0.5rem;
+    background: none;
+    padding: 0.25rem 1rem;
+    color: white;
+    cursor: pointer;
+    transition: 140ms ease;
+    background-color: ${isActive ? theme.colors.secondary : 'none'};
+
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    &:hover {
+      border: 1px solid ${theme.colors.secondary};
+      background-color: ${theme.colors.secondary};
     }
   `}
 `

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import books from 'constants/books.json'
 import { useRouter } from 'next/router'
 import { Container } from './styles'
+import { useGlobalContext } from 'contexts/globalContext'
 
 import {
   AiOutlineHeart,
@@ -12,8 +13,30 @@ import {
 const Details = () => {
   const router = useRouter()
   const { id } = router.query
+  const bookId = id?.toString()
+  const { favorites, setFavorites } = useGlobalContext()
 
-  const [isFavorite, setIsfavorite] = useState(false)
+  const checkIfIsFavorite = () => {
+    const book = favorites?.filter(book => book === id)
+    if (book?.length === 1) return true
+    return false
+  }
+
+  const [isFavorite, setIsfavorite] = useState<boolean>(checkIfIsFavorite())
+
+  const toggleFavorite = () => {
+    if (isFavorite && favorites && setFavorites) {
+      setIsfavorite(false)
+      setFavorites(favorites.filter(bookId => id !== bookId))
+      return
+    }
+    if (favorites && id && setFavorites && bookId) {
+      setIsfavorite(true)
+      const concatArray = favorites.concat([bookId])
+      setFavorites(concatArray)
+      return
+    }
+  }
 
   const book = books[0]
 
@@ -28,10 +51,7 @@ const Details = () => {
           <div>
             <div className="title-container">
               <h1 className="title">{book.title}</h1>
-              <div
-                className="favorite"
-                onClick={() => setIsfavorite(!isFavorite)}
-              >
+              <div className="favorite" onClick={() => toggleFavorite()}>
                 {isFavorite ? (
                   <AiFillHeart size={24} />
                 ) : (
