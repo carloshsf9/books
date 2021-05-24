@@ -1,12 +1,7 @@
-type Book = {
-  title: string
-  description: string
-  picture?: string
-  publishedDate: string
-  id: string
-  authors: string[]
-}
+import { SetStateAction } from 'react'
+import { Dispatch } from 'react'
 
 export type SidebarProps = {
-  books: Book[]
+  page: number
+  setPage?: Dispatch<SetStateAction<number>>
 }

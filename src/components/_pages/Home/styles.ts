@@ -28,6 +28,26 @@ export const Container = styled.section`
       }
     }
 
+    .pagination {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+
+    .page {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .pagination-button:hover {
+      opacity: 0.5;
+      transition: 140ms ease;
+      cursor: pointer;
+    }
+
     @media screen and (max-width: 1024px) {
       .books-container {
         padding: 3rem 1rem;

@@ -37,7 +37,6 @@ const Details = () => {
     const response = await getBookById(bookId)
     const formatedBook = formatBookResponse(response)
     setBook(formatedBook)
-    console.log(formatedBook)
   }
 
   useEffect(() => {
@@ -88,9 +87,9 @@ const Details = () => {
             <div className="authors-container">
               <p className="authors">
                 {book.authors?.map((name, index) => (
-                  <>
+                  <span key={index}>
                     {index > 0 && ' ,'} &nbsp;{name}
-                  </>
+                  </span>
                 ))}
               </p>
             </div>

@@ -24,6 +24,7 @@ export const Container = styled.div<ContainerProps>`
       justify-content: space-between;
       margin-bottom: 1.5rem;
       position: relative;
+      padding-right: 1.5rem;
 
       h1 {
         display: ${isActive ? 'block' : 'none'};
@@ -74,7 +75,6 @@ export const Container = styled.div<ContainerProps>`
       display: ${isActive ? 'flex' : 'none'};
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
     }
 
     .search,
@@ -82,7 +82,11 @@ export const Container = styled.div<ContainerProps>`
       display: ${isActive ? 'block' : 'none'};
     }
 
-
+    .results-length {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      opacity: 0.25;
+    }
     @media screen and (max-width: 1024px) {
       display: none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         '
     }

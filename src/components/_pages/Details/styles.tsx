@@ -71,11 +71,9 @@ export const Container = styled.div`
 
     .authors {
       margin-top: 1rem;
-    }
-
-    .authors {
       display: flex;
     }
+
 
     @media screen and (max-width: 1024px) {
       .header {
