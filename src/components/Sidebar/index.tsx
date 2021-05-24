@@ -36,7 +36,7 @@ const Sidebar = ({ page, setPage, search, setSearch }: SidebarProps) => {
     if (keywords?.length > 0) {
       const { books, totalItems } = await getBooksByKeywords(keywords, page)
       setResultsLength(totalItems)
-      const formatedBooks = books.map((book: any) => {
+      const formatedBooks = books?.map((book: any) => {
         return formatBookResponse(book)
       })
 

@@ -9,12 +9,13 @@ import Book from 'components/Book'
 
 const HomePage = () => {
   const router = useRouter()
-  const { showFavorites, favorites, books } = useGlobalContext()
+  const { showFavorites, favorites, books, setBooks } = useGlobalContext()
   const [search, setSearch] = useState<string>('')
   const [page, setPage] = useState<number>(0)
 
   useEffect(() => {
     if (search.length === 0) {
+      setBooks && setBooks([])
       setPage(0)
     }
   }, [search])

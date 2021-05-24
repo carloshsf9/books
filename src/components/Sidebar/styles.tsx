@@ -25,6 +25,7 @@ export const Container = styled.div<ContainerProps>`
       margin-bottom: 1.5rem;
       position: relative;
       padding-right: 1.5rem;
+      gap: 2.5rem;
 
       h1 {
         display: ${isActive ? 'block' : 'none'};
@@ -46,11 +47,13 @@ export const Container = styled.div<ContainerProps>`
       line-height: 2rem;
       overflow-y: auto;
       margin-top: 1rem;
-      padding-bottom: 5rem;
+      margin-bottom: 5rem;
+      max-height: calc(100% - 8rem);
 
       li {
         opacity: 0.3;
         cursor: pointer;
+
         &:hover {
           transition: 140ms ease;
           opacity: 1;
