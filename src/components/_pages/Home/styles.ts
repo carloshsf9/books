@@ -6,6 +6,7 @@ export const Container = styled.section`
 
     .books-container {
       display: flex;
+      justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
       padding: 3rem 2rem;
