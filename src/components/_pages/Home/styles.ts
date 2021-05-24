@@ -18,8 +18,9 @@ export const Container = styled.section`
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      padding: 0 1rem;
 
-      h1 {
+      & > h1 {
         margin-bottom: 2rem;
         max-width: 500px;
         text-align: center;
@@ -33,6 +34,9 @@ export const Container = styled.section`
         justify-content: center;
       }
       flex-direction: column;
+      .not-found > h1 {
+        font-size: 1.5rem;
+      }
     }
   `}
 `

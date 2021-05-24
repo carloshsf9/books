@@ -5,6 +5,7 @@ import React, {
   useContext,
   useState
 } from 'react'
+import { useLocalState } from 'hooks/useLocalState'
 
 type Props = {
   children: React.ReactNode
@@ -38,7 +39,7 @@ const GlobalContext = createContext<ContextType>({
 })
 
 const GlobalProvider = ({ children }: Props) => {
-  const [favorites, setFavorites] = useState<Book[]>([])
+  const [favorites, setFavorites] = useLocalState([], 'books')
   const [books, setBooks] = useState<Book[]>([])
   const [showFavorites, setShowFavorites] = useState<boolean>(false)
 
