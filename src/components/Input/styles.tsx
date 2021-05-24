@@ -17,6 +17,7 @@ export const Container = styled.div`
       border: none;
       padding: 0 1rem;
       color: white;
+      font-size: 1rem;
     }
 
     .icon {
