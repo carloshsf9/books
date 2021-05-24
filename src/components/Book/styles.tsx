@@ -62,10 +62,25 @@ export const Container = styled.div`
       }
     }
 
+    .cover-replace {
+      background-color: ${theme.colors.secondary};
+      height: 100%;
+      width: 100%;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
     @media screen and (max-width: 1024px) {
       .book-overlay {
         background-color: #0000009d;
         opacity: 1;
+      }
+      .cover-replace {
+        display: none;
       }
     }
   `}
