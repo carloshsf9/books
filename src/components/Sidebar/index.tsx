@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { SidebarProps } from './interface'
 import { useRouter } from 'next/router'
 import { Container, FilterButton } from './styles'
 import { useGlobalContext } from 'contexts/globalContext'
@@ -13,7 +14,7 @@ import {
 import { getBooksByKeywords } from 'utils/getBooksByKeywords'
 import { formatBookResponse } from 'utils/formatBookResponse'
 
-const Sidebar = () => {
+const Sidebar = ({ page, setPage }: SidebarProps) => {
   const router = useRouter()
   const {
     showFavorites,
@@ -23,13 +24,21 @@ const Sidebar = () => {
   } = useGlobalContext()
   const [isActive, setIsActive] = useState(true)
   const [search, setSearch] = useState('')
+  const [resultsLength, setResultsLength] = useState()
+
+  useEffect(() => {
+    handleBooksSearch(search)
+  }, [page])
 
   const handleBooksSearch = async (keywords: string) => {
     setSearch(keywords)
+    if (search.length === 0 && setPage) setPage(0)
+    setResultsLength(undefined)
     setBooks && setBooks([])
-    if (keywords.length > 0) {
-      const response = await getBooksByKeywords(keywords)
-      const formatedBooks = response.map((book: any) => {
+    if (keywords?.length > 0) {
+      const { books, totalItems } = await getBooksByKeywords(keywords, page)
+      setResultsLength(totalItems)
+      const formatedBooks = books.map((book: any) => {
         return formatBookResponse(book)
       })
 
@@ -39,6 +48,8 @@ const Sidebar = () => {
 
   const clearSearch = () => {
     setSearch('')
+    setPage && setPage(0)
+    setResultsLength(undefined)
     setBooks && setBooks([])
   }
 
@@ -46,6 +57,16 @@ const Sidebar = () => {
     <Container isActive={isActive}>
       <div className="header">
         <h1> Pesquisar </h1>
+        <div className="filter">
+          <span>Filtros:</span>
+          <FilterButton
+            isActive={showFavorites}
+            onClick={() => setShowFavorites && setShowFavorites(!showFavorites)}
+          >
+            Favoritos
+            {showFavorites && <AiOutlineClose />}
+          </FilterButton>
+        </div>
         <div className="toggle-button" onClick={() => setIsActive(!isActive)}>
           {isActive ? (
             <AiFillLeftCircle size={28} />
@@ -54,16 +75,7 @@ const Sidebar = () => {
           )}
         </div>
       </div>
-      <div className="filter">
-        <span>Filtros:</span>
-        <FilterButton
-          isActive={showFavorites}
-          onClick={() => setShowFavorites && setShowFavorites(!showFavorites)}
-        >
-          Favoritos
-          {showFavorites && <AiOutlineClose />}
-        </FilterButton>
-      </div>
+
       <div className="search">
         <Input
           value={search}
@@ -71,13 +83,21 @@ const Sidebar = () => {
           iconClick={() => clearSearch()}
           placeholder="Títulos, palavras chaves e autores"
           icon={
-            search.length ? (
+            search?.length ? (
               <AiOutlineClose size={18} />
             ) : (
               <FaSearch size={18} />
             )
           }
         />
+      </div>
+      <div className="results-length">
+        {resultsLength && (
+          <p>
+            {(page + 1) * 10} de {resultsLength} resultados encontrados estão
+            sendo exibidos
+          </p>
+        )}
       </div>
       <ul className="search-list">
         {books?.map((book, index) => (

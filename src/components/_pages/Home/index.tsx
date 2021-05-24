@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Container } from './styles'
 import { useGlobalContext } from 'contexts/globalContext'
@@ -10,12 +10,13 @@ import Book from 'components/Book'
 const HomePage = () => {
   const router = useRouter()
   const { showFavorites, favorites, books } = useGlobalContext()
+  const [page, setPage] = useState<number>(0)
 
   return (
     <Container>
-      <MobileSearch />
-      <Sidebar />
-      {books?.length === 0 && !showFavorites && (
+      <MobileSearch page={page} />
+      <Sidebar page={page} setPage={setPage} />
+      {books?.length === 0 && !showFavorites && page === 0 && (
         <div className="not-found">
           <h1>Pesquise por titulos palavras chaves e autores..</h1>
         </div>
@@ -41,6 +42,32 @@ const HomePage = () => {
                 onClick={() => router.push(`/${book.id}`)}
               />
             ))}
+        {!showFavorites && books !== undefined && books?.length > 0 && (
+          <>
+            <div className="pagination">
+              {page > 0 && (
+                <>
+                  <span
+                    onClick={() => setPage(page - 1)}
+                    className="pagination-button"
+                  >
+                    Anterior
+                  </span>
+                  <span> | </span>
+                </>
+              )}
+              <span
+                onClick={() => setPage(page + 1)}
+                className="pagination-button"
+              >
+                Próxima
+              </span>
+            </div>
+            <div className="page">
+              <span>Página atual: {page + 1}</span>
+            </div>
+          </>
+        )}
       </div>
     </Container>
   )
