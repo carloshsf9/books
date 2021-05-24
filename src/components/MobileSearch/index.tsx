@@ -6,10 +6,17 @@ import { useGlobalContext } from 'contexts/globalContext'
 import { FaFilter } from 'react-icons/fa'
 import { getBooksByKeywords } from 'utils/getBooksByKeywords'
 import { formatBookResponse } from 'utils/formatBookResponse'
+import { AiOutlineClose } from 'react-icons/ai'
+import { FaSearch } from 'react-icons/fa'
 
 import { useRouter } from 'next/router'
 
-const MobileSearch = ({ page, search, setSearch }: MobileSearchProps) => {
+const MobileSearch = ({
+  page,
+  search,
+  setSearch,
+  setPage
+}: MobileSearchProps) => {
   const router = useRouter()
   const {
     books,
@@ -31,6 +38,12 @@ const MobileSearch = ({ page, search, setSearch }: MobileSearchProps) => {
     }
   }
 
+  const clearSearch = () => {
+    setSearch('')
+    setPage && setPage(0)
+    setBooks && setBooks([])
+  }
+
   useEffect(() => {
     handleBooksSearch(search)
   }, [page])
@@ -43,6 +56,14 @@ const MobileSearch = ({ page, search, setSearch }: MobileSearchProps) => {
             value={search}
             placeholder="Pesquise por títulos, palavras-chave e autores"
             onChange={e => handleBooksSearch(e.target.value)}
+            iconClick={() => clearSearch()}
+            icon={
+              search?.length ? (
+                <AiOutlineClose size={18} />
+              ) : (
+                <FaSearch size={18} />
+              )
+            }
           />
         </div>
         <span

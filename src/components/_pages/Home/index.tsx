@@ -22,7 +22,12 @@ const HomePage = () => {
 
   return (
     <Container>
-      <MobileSearch search={search} setSearch={setSearch} page={page} />
+      <MobileSearch
+        search={search}
+        setSearch={setSearch}
+        page={page}
+        setPage={setPage}
+      />
       <Sidebar
         search={search}
         setSearch={setSearch}

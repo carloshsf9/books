@@ -90,12 +90,7 @@ const Sidebar = ({ page, setPage, search, setSearch }: SidebarProps) => {
         />
       </div>
       <div className="results-length">
-        {resultsLength && (
-          <p>
-            {(page + 1) * 20} de {resultsLength} resultados encontrados estão
-            sendo exibidos
-          </p>
-        )}
+        {resultsLength && <p>{resultsLength} resultados encontrados</p>}
       </div>
       <ul className="search-list">
         {books?.slice(0, 9).map((book, index) => (

@@ -9,7 +9,7 @@ export const Container = styled.div<ContainerProps>`
     background-color: #1a1a1a;
     height: 100vh;
     width: ${isActive ? '100%' : '100px'};
-    max-width: 38rem;
+    max-width: 29rem;
     padding: 3rem 1.5rem;
     position: sticky;
     top: 0;
