@@ -8,6 +8,11 @@
 - Eslint
 - Prettier
 
+> Production URL
+
+  This project is hosted on Vercel using SSR
+
+  https://books-eosin.vercel.app/
 
 > Codebase Standard
 
